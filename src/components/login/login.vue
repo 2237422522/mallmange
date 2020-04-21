@@ -32,15 +32,13 @@
                 const res = await this.$http.post('login',this.formData)
                 // 登陆成功
                 // 1：跳转到home 2：提示成功
-                console.log(res.data)
-                const {meta:{data,msg,status},token} = res.data
+                const {data,meta:{msg,status}} = res.data
                 // 登陆不成功 
                 // 保存token
-                
                 // 弹窗提示
                 if(status === 200){
                     this.open2(msg,'success')
-                    localStorage.setItem('token',token)
+                    localStorage.setItem('token',data.token)
                     this.$router.push({name:'home'})
                 }
                 else{
